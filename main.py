@@ -25,6 +25,13 @@ class CountryData():
             'currency_name': list(),
             'population': list()
         }
+    
+    def data_to_dict(self, response):
+        for country in response:
+            currencies_key = list(country['currencies'].keys())[0]
+            self.data['nation_official_name'].append(country['name']['official'])
+            self.data['currency_name'].append(country['currencies'][currencies_key]['name'])
+            self.data['population'].append(country['population'])
 
 if __name__ == '__main__':
     print("first code")
