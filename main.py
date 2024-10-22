@@ -2,7 +2,13 @@ import aiohttp
 import asyncio
 import psycopg2
 from sqlalchemy import create_engine 
+import os
 
+DB_NAME = os.getenv('DBNAME','postgres')
+DB_USER = os.getenv('DBUSER','postgres')
+DB_PASSWORD = os.getenv('DBPASSWORD','admin')
+DB_HOST = os.getenv('DBHOST','172.17.0.2')
+DB_PORT = os.getenv('DBPORT','5432')
 
 async def fetch_data_from_api():
     """
