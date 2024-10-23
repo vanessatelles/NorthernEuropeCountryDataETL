@@ -1,8 +1,9 @@
+import os
 import aiohttp
 import asyncio
 import psycopg2
+import pandas as pd
 from sqlalchemy import create_engine 
-import os
 
 DB_NAME = os.getenv('DBNAME','postgres')
 DB_USER = os.getenv('DBUSER','postgres')
@@ -41,6 +42,11 @@ class CountryData():
             self.data['nation_official_name'].append(country['name']['official'])
             self.data['currency_name'].append(country['currencies'][currencies_key]['name'])
             self.data['population'].append(country['population'])
+
+    def get_dataframe(self):
+ 
+        df = pd.DataFrame(self.data)
+        return df
 
 def prepare_database(table_name):
 
