@@ -46,7 +46,14 @@ class CountryData():
     def get_dataframe(self):
  
         df = pd.DataFrame(self.data)
+        
         return df
+    
+    def load_to_sql(self, dataframe, table_name, conn):
+
+        dataframe.to_sql(table_name, conn, if_exists='replace', index = False)
+
+        return
 
 def prepare_database(table_name):
 
