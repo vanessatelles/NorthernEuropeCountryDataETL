@@ -32,7 +32,10 @@ class CountryData():
     It processes and formats the data before loading it into the database.
     """
     def __init__(self):
-
+        """
+        Initialize an instance of CountrData with a dict.
+        The dict has three keys, each associated with an emptylist.
+        """
         self.data = {
             'nation_official_name': list(),
             'currency_name': list(),
