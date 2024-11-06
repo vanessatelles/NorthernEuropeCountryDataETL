@@ -81,4 +81,9 @@ def prepare_database(table_name):
     return conn
 
 if __name__ == '__main__':
-    print("first code")
+    api_response = asyncio.run(fetch_data_from_api())
+    conn = prepare_database('db')
+    all_data = CountryData()
+    all_data.data_to_dict(api_response)
+    df = all_data.get_dataframe()
+    all_data.load_to_sql(df,'db', conn)
