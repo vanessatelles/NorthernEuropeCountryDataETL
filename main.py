@@ -43,6 +43,12 @@ class CountryData():
         }
     
     def data_to_dict(self, response):
+        """
+        Method to manage and process the raw data into a standardized dict.
+
+        Args:            
+            response (dict): Data from the API.
+        """
         for country in response:
             currencies_key = list(country['currencies'].keys())[0]
             self.data['nation_official_name'].append(country['name']['official'])
