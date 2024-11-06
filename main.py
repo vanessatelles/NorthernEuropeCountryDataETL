@@ -27,7 +27,10 @@ async def fetch_data_from_api():
             return response
 
 class CountryData():
-
+    """
+    This class is designed to manage raw data from the API endpoint.
+    It processes and formats the data before loading it into the database.
+    """
     def __init__(self):
 
         self.data = {
