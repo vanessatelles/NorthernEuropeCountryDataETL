@@ -27,9 +27,15 @@ async def fetch_data_from_api():
             return response
 
 class CountryData():
-
+    """
+    This class is designed to manage raw data from the API endpoint.
+    It processes and formats the data before loading it into the database.
+    """
     def __init__(self):
-
+        """
+        Initialize an instance of CountrData with a dict.
+        The dict has three keys, each associated with an emptylist.
+        """
         self.data = {
             'nation_official_name': list(),
             'currency_name': list(),
@@ -37,6 +43,12 @@ class CountryData():
         }
     
     def data_to_dict(self, response):
+        """
+        Method to manage and process the raw data into a standardized dict.
+
+        Args:            
+            response (dict): Data from the API.
+        """
         for country in response:
             currencies_key = list(country['currencies'].keys())[0]
             self.data['nation_official_name'].append(country['name']['official'])
@@ -81,4 +93,9 @@ def prepare_database(table_name):
     return conn
 
 if __name__ == '__main__':
-    print("first code")
+    api_response = asyncio.run(fetch_data_from_api())
+    conn = prepare_database('db')
+    all_data = CountryData()
+    all_data.data_to_dict(api_response)
+    df = all_data.get_dataframe()
+    all_data.load_to_sql(df,'db', conn)
