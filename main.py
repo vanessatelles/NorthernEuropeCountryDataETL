@@ -56,7 +56,12 @@ class CountryData():
             self.data['population'].append(country['population'])
 
     def get_dataframe(self):
- 
+        """ 
+        Method to format the processed data as a dataframe. 
+
+        Returns:
+            df (dataframe): A pandas dataframe with the chosen columns.
+        """ 
         df = pd.DataFrame(self.data)
         
         return df
