@@ -80,7 +80,15 @@ class CountryData():
         return
 
 def prepare_database(table_name):
+    """
+    Creates a new database session, connect to postgresql and create a new table.
 
+    Args:
+        table_name(string): The name of the table in the database
+        
+    Returns:
+        conn(connection object): A new instance of the connection class.
+    """
     db = create_engine(f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
     conn = db.connect()
 
