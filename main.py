@@ -67,7 +67,14 @@ class CountryData():
         return df
     
     def load_to_sql(self, dataframe, table_name, conn):
+        """
+        Method to load the dataframe to a sql database. 
 
+        Args:
+            dataframe(dataframe): A pandas dataframe to load.
+            table_name(string): The name of the table in the database
+            conn(connection object.): A instance of the connection class.
+        """
         dataframe.to_sql(table_name, conn, if_exists='replace', index = False)
 
         return
