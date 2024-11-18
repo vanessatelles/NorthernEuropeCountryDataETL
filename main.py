@@ -56,19 +56,39 @@ class CountryData():
             self.data['population'].append(country['population'])
 
     def get_dataframe(self):
- 
+        """ 
+        Method to format the processed data as a dataframe. 
+
+        Returns:
+            df (dataframe): A pandas dataframe with the chosen columns.
+        """ 
         df = pd.DataFrame(self.data)
         
         return df
     
     def load_to_sql(self, dataframe, table_name, conn):
+        """
+        Method to load the dataframe to a sql database. 
 
+        Args:
+            dataframe(dataframe): A pandas dataframe to load.
+            table_name(string): The name of the table in the database
+            conn(connection object.): A instance of the connection class.
+        """
         dataframe.to_sql(table_name, conn, if_exists='replace', index = False)
 
         return
 
 def prepare_database(table_name):
+    """
+    Creates a new database session, connect to postgresql and create a new table.
 
+    Args:
+        table_name(string): The name of the table in the database
+        
+    Returns:
+        conn(connection object): A new instance of the connection class.
+    """
     db = create_engine(f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}')
     conn = db.connect()
 
